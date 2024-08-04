@@ -62,7 +62,7 @@ const SearchWorkouts = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search workouts..."
-                className="border border-gray-300 p-2 rounded-lg"
+                className="border border-gray-300 p-3 rounded-lg"
             />
             <button onClick={handleSearch} className="absolute right-2 top-2 bg-black w-8 h-8 flex justify-center items-center rounded-full">
                 <CiSearch className="text-white text-xl" />
@@ -70,7 +70,7 @@ const SearchWorkouts = () => {
 
             {loading && <Loader />}
 
-            <div className="results">
+            <div className="results z-20 top-[100%]">
 
                 {!loading && err && <div className="text-sm bg-red-100 py-1 px-2 text-center tracking-wider text-gray-800 border-2 border-red-700 rounded-lg ">{err}</div>}
 

@@ -261,6 +261,12 @@ input.error {
         font-size: 20px;
     }
 
+    #result {
+        bottom: -50px;
+        background: white;
+        border-radius: 4px;
+    }
+
     header .container div {
         position: absolute;
         right: 0;
@@ -268,12 +274,8 @@ input.error {
         left: 20%;
     }
 
-    .results {
-        position: relative;
-    }
-
     header {
-        overflow-y: hidden;
+        overflow-y: scroll;
     }
 
     .home {

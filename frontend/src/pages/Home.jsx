@@ -3,6 +3,7 @@ import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutsForm from "../components/WorkoutsForm";
 import Loader from "../components/Loader";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import SearchWorkouts from "../components/SearchWorkouts";
 
 const Home = () => {
 
@@ -22,6 +23,9 @@ const Home = () => {
             if (res.ok) {
                 setLoading(false);
                 dispatch({ type: 'SET_WORKOUTS', payload: data.data });
+            } else {
+                setLoading(false);
+                console.error(data.message);
             }
         };
 
@@ -31,7 +35,12 @@ const Home = () => {
     return (
         <div className="home">
             <div className="workouts">
-                <h2 className="text-red-600 text-sm tracking-wider">{workouts.length} workouts found</h2>
+                <div className="flex justify-between items-center w-full">
+                    <h2 className="text-red-600 text-sm tracking-wider">{workouts.length} workouts found</h2>
+                    <div>
+                        <SearchWorkouts />
+                    </div>
+                </div>
                 {loading && <Loader />}
                 {workouts.length === 0 ? (
                     <div className="text-xl font-light tracking-wider text-red-500 text-center text-shadow-md">No workouts available</div>

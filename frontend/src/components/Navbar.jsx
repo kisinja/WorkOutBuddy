@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import SearchWorkouts from "./SearchWorkouts"
+
 
 const Navbar = () => {
     return (
@@ -13,10 +13,6 @@ const Navbar = () => {
                         </span>
                     </h1>
                 </Link>
-
-                <div>
-                    <SearchWorkouts />
-                </div>
             </div>
         </header>
     )

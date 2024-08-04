@@ -85,7 +85,9 @@ const WorkoutsForm = () => {
                 {loading ? (
                     <Loader />
                 ) : (
-                    <button className="btn" onClick={handleSubmit}>Add Workout</button>
+                    <button className="btn" onClick={handleSubmit}>
+                        Add Workout
+                    </button>
                 )}
             </div>
         </form >
