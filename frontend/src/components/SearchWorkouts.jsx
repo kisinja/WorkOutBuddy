@@ -74,28 +74,14 @@ const SearchWorkouts = () => {
 
                 {!loading && err && <div className="text-sm bg-red-100 py-1 px-2 text-center tracking-wider text-gray-800 border-2 border-red-700 rounded-lg ">{err}</div>}
 
-                {message && <div className="text-sm text-gray-500 ">{message}</div>}
+                {/* {message && <div className="text-sm text-gray-500 ">{message}</div>} */}
 
                 {results.map((workout) => (
-                    <div key={workout._id} className="flex flex-col gap-3">
+                    <div key={workout._id} className="flex flex-col gap-3 text-left">
+                        <p className="text-gray-500 text-sm italic">{results.length} result{results.length === 1 ? "" : "s"} found ...</p>
                         <h3 id="title">
                             {workout.title}
                         </h3>
-                        <p>
-                            <strong>
-                                Load (kg):
-                            </strong>
-                            {workout.load}
-                        </p>
-                        <p>
-                            <strong>
-                                Reps:
-                            </strong>
-                            {workout.reps}
-                        </p>
-                        <button className="py-1 px-2 text-sm bg-green-300 rounded text-white">
-                            Go to workout
-                        </button>
                     </div>
                 ))}
             </div>

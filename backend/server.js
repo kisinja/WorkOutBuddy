@@ -18,11 +18,13 @@ const Workout = require('./models/Workout'); */
 
 // Routes
 const workoutsRouter = require('./routes/workouts');
+const authRouter = require('./routes/user');
 
 const port = process.env.PORT || 5000;
 
 // Middleware
 app.use('/api/workouts', workoutsRouter);
+app.use("/api/auth", authRouter);
 
 // Default Route
 app.get('/', (req, res) => {

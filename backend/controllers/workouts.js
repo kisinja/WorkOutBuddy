@@ -141,7 +141,7 @@ const searchWorkouts = async (req, res) => {
                     $options: "i" // "i" makes it case-insensitive
                 }
             }
-        );
+        ).select("title");
 
         if (workouts) {
             res.json(workouts).status(200);
