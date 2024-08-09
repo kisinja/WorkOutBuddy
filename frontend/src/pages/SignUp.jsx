@@ -8,7 +8,6 @@ const SignUp = () => {
 
     const { error, loading, signUp } = useSignUp();
 
-    const BASE_URL = 'http://localhost:8930/api/auth/signup';
 
     const handleSubmit = async (e) => {
         e.preventDefault();

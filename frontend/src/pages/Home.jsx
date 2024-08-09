@@ -4,6 +4,7 @@ import WorkoutsForm from "../components/WorkoutsForm";
 import Loader from "../components/Loader";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import SearchWorkouts from "../components/SearchWorkouts";
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Home = () => {
 
@@ -13,11 +14,19 @@ const Home = () => {
 
     const [loading, setLoading] = useState(false);
 
+    const { user } = useAuthContext();
+
     useEffect(() => {
         document.title = "Workout Buddy | Home";
         setLoading("true");
         const fetchWorkouts = async () => {
-            const res = await fetch(BASE_URL);
+            const res = await fetch(BASE_URL, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                }
+            });
             const data = await res.json();
             console.log(data);
             if (res.ok) {
@@ -29,8 +38,11 @@ const Home = () => {
             }
         };
 
-        fetchWorkouts();
-    }, [dispatch]);
+        if (user) {
+            fetchWorkouts();
+        }
+
+    }, [user, dispatch]);
 
     return (
         <div className="home">

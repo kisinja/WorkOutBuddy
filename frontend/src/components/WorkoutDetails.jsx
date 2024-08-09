@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import RelativeTime from './RelativeTime';
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import { FaRegTrashCan } from "react-icons/fa6";
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const WorkoutDetails = ({ workout }) => {
 
@@ -9,9 +10,20 @@ const WorkoutDetails = ({ workout }) => {
 
     const { dispatch } = useWorkoutsContext();
 
+    const { user } = useAuthContext();
+
     const handleClick = async () => {
+
+        if (!user) {
+            return;
+        }
+
         const res = await fetch(`http://localhost:8930/api/workouts/${workout._id}`, {
             method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
+            }
         });
 
         const data = await res.json();

@@ -11,6 +11,12 @@ const {
     searchWorkouts
 } = require("../controllers/workouts");
 
+// require Auth for all workout routes
+const requireAuth = require("../middleware/requireAuth");
+
+// Apply the middleware to all routes
+router.use(requireAuth);
+
 // GET all workouts
 router.get("/", getAllWorkouts);
 

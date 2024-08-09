@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 import Loader from "./Loader";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const WorkoutsForm = () => {
     const { dispatch } = useWorkoutsContext();
@@ -17,8 +18,15 @@ const WorkoutsForm = () => {
 
     const BASE_URL = "http://localhost:8930/api/workouts/";
 
+    const { user } = useAuthContext();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!user) {
+            setErr("You must be logged in")
+            return
+        }
 
         setLoading(true);
 
@@ -32,6 +40,7 @@ const WorkoutsForm = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             },
             body: JSON.stringify(newWorkout),
         });
@@ -70,11 +79,11 @@ const WorkoutsForm = () => {
             </div>
             <div className="form-control">
                 <label htmlFor="load">Load (in kg):</label>
-                <input type="number" id="load" name="load" value={load} className={Array.isArray(emptyFields) && emptyFields.includes('load') ? "error" : ""} onChange={(e) => setLoad(e.target.value)} />
+                <input type="number" min="0" id="load" name="load" value={load} className={Array.isArray(emptyFields) && emptyFields.includes('load') ? "error" : ""} onChange={(e) => setLoad(e.target.value)} />
             </div>
             <div className="form-control">
                 <label htmlFor="reps">Reps:</label>
-                <input type="number" id="reps" name="reps" value={reps} className={Array.isArray(emptyFields) && emptyFields.includes('reps') ? "error" : ""} onChange={(e) => setReps(e.target.value)} />
+                <input type="number" min="0" id="reps" name="reps" value={reps} className={Array.isArray(emptyFields) && emptyFields.includes('reps') ? "error" : ""} onChange={(e) => setReps(e.target.value)} />
             </div>
 
             {err && <div className="error">{err}</div>}

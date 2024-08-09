@@ -255,10 +255,6 @@ form.login {
         font-size: 20px;
     }
 
-    header .container div {
-        display: none;
-    }
-
     .results {
         position: relative;
     }
@@ -297,17 +293,6 @@ form.login {
         bottom: -50px;
         background: white;
         border-radius: 4px;
-    }
-
-    header .container div {
-        position: absolute;
-        right: 0;
-        top: 0;
-        left: 20%;
-    }
-
-    header {
-        overflow-y: scroll;
     }
 
     .home {
