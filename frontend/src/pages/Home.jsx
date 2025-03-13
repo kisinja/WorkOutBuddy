@@ -49,9 +49,19 @@ const Home = () => {
                     </div>
                 </div>
 
-                {workouts.map(workout => (
-                    <WorkoutDetails key={workout._id} workout={workout} />
-                ))}
+                {
+                    workouts && workouts.map(workout => (
+                        <WorkoutDetails key={workout._id} workout={workout} />
+                    ))
+                }
+
+                {
+                    workouts.length === 0 && <div className="w-[380px] mx-auto bg-white p-3 rounded-2xl flex flex-col gap-2 items-center">
+                        <h4 className='tracking-wider text-gray-900 font-semibold'>No workout Added ❗❗</h4>
+
+                        <p className="tracking-wider text-gray-500 ">Add a new workout in the form 👉👉</p>
+                    </div>
+                }
             </div>
             <WorkoutsForm />
         </div>
