@@ -22,6 +22,7 @@ const WorkoutsForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSuccess('');
 
         if (!user) {
             setErr("You must be logged in")
